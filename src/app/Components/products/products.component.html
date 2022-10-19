@@ -1,0 +1,105 @@
+<!-- Hint For 2.a in lab assignment -->
+<!-- Select category -->
+<div class="mb-3">
+<label for="prdcat">Category</label>
+<select class="form-control" name="cat" id="prdcat" [(ngModel)]="selectedCatID">
+<option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+</select>
+
+For test cat id: <h3>{{selectedCatID}}</h3>
+</div>
+
+<!-- <div >
+    Current Date: {{date|date:'short'}}
+
+</div> -->
+<table class="table m-2">
+  <thead class="bg-dark text-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Quantity</th>
+      <!-- <th scope="col">Price</th> -->
+      <th scope="col">Price in USD</th>
+      <th scope="col">Price in EGP</th>
+      <th scope="col">Buy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- First test case -->
+    <!-- <tr *ngFor="let prd of prdList">
+            <td>{{prd.id}}</td>
+            <td>{{prd.name}}</td>
+            <td><img [src]="prd.imgUrl" width="100" height="100"></td>
+            <td>{{prd.quantity}}</td>
+            <td>{{prd.price}}</td>
+            <td><button class="btn btn-success">Buy</button></td>
+
+        </tr> -->
+
+    <!-- Second test case-->
+    <!-- ngFor => built in variables (index)-->
+    <!-- <tr *ngFor="let prd of prdList;let i=index"> -->
+    <!-- Forth test case -->
+    <!-- <tr *ngFor="let prd of prdList;let i=index" [hidden]="prd.quantity==0"> -->
+
+    <!-- Fifth Test case -->
+    <!-- Class binding => property binding -->
+    <!-- <tr *ngFor="let prd of prdList;let i=index" [class.bg-warning]="prd.quantity==0" [class.text-danger]="prd.quantity==0"> -->
+
+    <!-- Sixth test case -->
+    <!-- Style binding => property binding -->
+    <!-- <tr *ngFor="let prd of prdList;let i=index" [style.background-color]="(prd.quantity==0)?'lightyellow':'lightblue'"
+      [style.color]="(prd.quantity==0)?'red':'gray'"> -->
+
+
+    <!-- Virtual containers -->
+    <!-- ng-conatiner  || ng-template   || ng-content -->
+    <ng-container *ngFor="let prd of prdList;let i=index">
+      <!-- <tr *ngIf="prd.quantity>0"> -->
+      <tr
+        [ngStyle]="{'background-color':(prd.quantity==0)?'lightyellow':'lightblue','color':(prd.quantity==0)?'red':'blue'}">
+        <!-- <tr [ngClass]="{'bg-warning':prd.quantity==0,'text-danger':prd.quantity==0}"> -->
+        <td>{{i+1}}</td>
+        <!-- value|pipeName -->
+        <td>{{prd.name|uppercase}}</td>
+        <td><img [src]="prd.imgUrl" width="100" height="100" BorderBox="orange" defaultColor="darkgray"></td>
+        <!-- <td>{{prd.quantity}}</td> -->
+        <td>
+          <!-- <span *ngIf="prd.quantity>0">{{prd.quantity}}</span>
+            <span *ngIf="prd.quantity==0">out of stock</span> -->
+
+          <!-- <span *ngIf="prd.quantity>0;else outofstock">{{prd.quantity}}</span> -->
+          <!-- template reference => #referenceName -->
+          <!-- <ng-template #outofstock>Out of stock</ng-template> -->
+
+
+          <!-- Good syntax -->
+          <!-- <ng-container *ngIf="prd.quantity>0;else outofstock">{{prd.quantity}}</ng-container>
+          <ng-template #outofstock>Out of stock</ng-template> -->
+
+
+          <!-- Switch cases -->
+          <!-- switch(statement){case 0: } -->
+          <ng-container [ngSwitch]="prd.quantity">
+            <ng-container *ngSwitchCase="0">Out of stock</ng-container>
+            <ng-container *ngSwitchCase="1">Last Item</ng-container>
+            <ng-container *ngSwitchCase="2">Last 2 Item</ng-container>
+            <ng-container *ngSwitchDefault>{{prd.quantity}}</ng-container>
+          </ng-container>
+
+        </td>
+        <!-- <td>{{prd.price|currency:'USD':'code'}}</td> -->
+        <td>{{prd.price | currency:'USD':'symbol'}}</td>
+        <!-- <td>{{prd.price | USDToEgp | currency:'EGP'}}</td> -->
+        <td>{{prd.price | USDToEgp:20 | currency:'EGP'}}</td>
+
+        <!-- Third test case -->
+        <!-- <td><button class="btn btn-success">Buy</button></td> -->
+        <!-- <td><button class="btn btn-success" [hidden]="prd.quantity==0">Buy</button></td> -->
+        <td><button class="btn btn-success" [disabled]="prd.quantity==0">Buy</button></td>
+
+      </tr>
+    </ng-container>
+  </tbody>

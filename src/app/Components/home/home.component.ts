@@ -3,6 +3,7 @@ import { StoreClass } from 'src/app/Models/store-class';
 import { StoreInfo } from 'src/app/Models/store-info';
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,10 +18,24 @@ store:StoreInfo={name:"ITI Store",coverImgURL:"https://cdn.pixabay.com/photo/201
 // class property
 storeDataClass:StoreClass;
 
+// Day2
+showImg:boolean = true;
+userFeedback:string = "VeryGood";
+
 
   constructor() {
     this.storeDataClass=new StoreClass("ITI From Class","https://st.depositphotos.com/1522993/2984/i/600/depositphotos_29843999-stock-photo-pink-abstract-flower-with-sparkles.jpg",["Item1","Item2","Item3"]);
    }
+
+   toggleImg(){
+
+    this.showImg=!this.showImg;
+   }
+
+
+
+
+
 
   ngOnInit(): void {
   }

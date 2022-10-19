@@ -15,4 +15,15 @@
 <!-- <img src="{{storeDataClass.imgUrl}}" alt=""> -->
 
 <!-- Property Binding -->
-<img [src]="storeDataClass.imgUrl" alt="">
+<!-- true=>shown || false=>hidden -->
+<img *ngIf="showImg" [src]="storeDataClass.imgUrl" alt=""> 
+
+<!-- Day2 -->
+<!-- Event binding -->
+<button class="btn btn-primary" (click)="toggleImg()">Toggle Img</button>
+<br>
+<br>
+<!-- <input type="text" [value]="userFeedback" class="form-control"> -->
+<input type="text" [(ngModel)]="userFeedback" class="form-control">
+<br>
+For Test: {{userFeedback}}
