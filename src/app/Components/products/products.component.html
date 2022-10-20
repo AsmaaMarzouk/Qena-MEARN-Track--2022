@@ -1,13 +1,14 @@
 <!-- Hint For 2.a in lab assignment -->
 <!-- Select category -->
-<div class="mb-3">
+<!-- Day3 -->
+<!-- <div class="mb-3">
 <label for="prdcat">Category</label>
 <select class="form-control" name="cat" id="prdcat" [(ngModel)]="selectedCatID">
 <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
 </select>
 
 For test cat id: <h3>{{selectedCatID}}</h3>
-</div>
+</div> -->
 
 <!-- <div >
     Current Date: {{date|date:'short'}}
@@ -23,7 +24,8 @@ For test cat id: <h3>{{selectedCatID}}</h3>
       <!-- <th scope="col">Price</th> -->
       <th scope="col">Price in USD</th>
       <th scope="col">Price in EGP</th>
-      <th scope="col">Buy</th>
+      <th scope="col">Count</th>
+      <th scope="col">cart</th>
     </tr>
   </thead>
   <tbody>
@@ -56,7 +58,8 @@ For test cat id: <h3>{{selectedCatID}}</h3>
 
     <!-- Virtual containers -->
     <!-- ng-conatiner  || ng-template   || ng-content -->
-    <ng-container *ngFor="let prd of prdList;let i=index">
+    <!-- <ng-container *ngFor="let prd of prdList;let i=index"> -->
+    <ng-container *ngFor="let prd of prdListOfCat;let i=index">
       <!-- <tr *ngIf="prd.quantity>0"> -->
       <tr
         [ngStyle]="{'background-color':(prd.quantity==0)?'lightyellow':'lightblue','color':(prd.quantity==0)?'red':'blue'}">
@@ -98,8 +101,14 @@ For test cat id: <h3>{{selectedCatID}}</h3>
         <!-- Third test case -->
         <!-- <td><button class="btn btn-success">Buy</button></td> -->
         <!-- <td><button class="btn btn-success" [hidden]="prd.quantity==0">Buy</button></td> -->
-        <td><button class="btn btn-success" [disabled]="prd.quantity==0">Buy</button></td>
+        <td><input type="number" class="form-control" #itemsCount></td>
+        <td><button class="btn btn-success" [disabled]="prd.quantity==0" (click)="updateTotalPrice(prd.price,itemsCount.value)">Add to cart</button></td>
 
       </tr>
     </ng-container>
   </tbody>
+<!-- Day3 -->
+<!-- <div class="bg-info">
+For Test:
+<h2>{{orderTotalPrice}}</h2>
+</div> -->

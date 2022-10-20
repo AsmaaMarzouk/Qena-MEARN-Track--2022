@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductsComponent } from './Components/products/products.component';
 import { BorderBoxDirective } from './Directives/border-box.directive';
 import { UsdToEgpPipe } from './Pipes/usd-to-egp.pipe';
+import { OrderParentComponent } from './Components/order-parent/order-parent.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UsdToEgpPipe } from './Pipes/usd-to-egp.pipe';
     SidebarComponent,
     ProductsComponent,
     BorderBoxDirective,
-    UsdToEgpPipe
+    UsdToEgpPipe,
+    OrderParentComponent
   ],
   imports: [
     BrowserModule,

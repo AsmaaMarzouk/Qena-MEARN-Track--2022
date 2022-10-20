@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Icategory } from 'src/app/Models/icategory';
 import { Iproduct } from 'src/app/Models/iproduct';
 
@@ -7,16 +7,28 @@ import { Iproduct } from 'src/app/Models/iproduct';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit,OnChanges {
   date:Date=new Date();
 // Declare array from type Iproduct
 prdList: Iproduct[];
 // For lab assignment
-catList:Icategory[];
-selectedCatID:number = 0;
+// Day3
+// catList:Icategory[];
+// selectedCatID:number = 0;
+// Day3
+prdListOfCat:Iproduct[]=[];
+@Input() receivedCatID:number = 0;
+orderTotalPrice:number = 0;
+
+// EventEmitter => generic class
+@Output() totalPriceChanged:EventEmitter<number>;
+
+
 
 // Initialize array inside constructor
   constructor() { 
+    // create object of event emitter
+    this.totalPriceChanged=new EventEmitter<number>();
     this.prdList=[
       {id:1,name:"HP",price:20000,quantity:0,imgUrl:"https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80",
     catID:1},
@@ -32,14 +44,43 @@ selectedCatID:number = 0;
     catID:3}
     ];
 
-    this.catList=[
-      {id:1,name:"Laptops"},
-      {id:2,name:"Mobiles"},
-      {id:3,name:"TV"}
-    ];
+    // Day3
+    // this.catList=[
+    //   {id:1,name:"Laptops"},
+    //   {id:2,name:"Mobiles"},
+    //   {id:3,name:"TV"}
+    // ];
+  }
+  ngOnChanges(): void {
+    this.getProductsOfCat();
   }
 
   ngOnInit(): void {
+    // this.getProductsOfCat();
+  }
+
+ private getProductsOfCat(){
+  if(this.receivedCatID==0)
+  {
+    this.prdListOfCat=Array.from(this.prdList);
+    return;
+  }
+
+     this.prdListOfCat= this.prdList.filter((prd)=>prd.catID==this.receivedCatID);
+
+  }
+
+  updateTotalPrice(prdPrice:number,items:any){
+
+    // covert string to number
+    // this.orderTotalPrice += prdPrice* parseInt(items);
+    // this.orderTotalPrice += prdPrice* Number(items);
+    // this.orderTotalPrice += prdPrice* items as number;
+    this.orderTotalPrice += (prdPrice* +items);
+    // to fire event use emit
+    this.totalPriceChanged.emit(this.orderTotalPrice);
+
+
   }
 
 }
