@@ -1,0 +1,27 @@
+<div class="card" style="width:18rem;">
+  <img [src]="prd?.imgUrl" alt="...">
+  <!-- <div class="card-body" *ngIf="prd"> -->
+  <div class="card-body">
+    <!-- ? => check if null or not -->
+    <h5 class="card-title">Name: {{prd?.name}}</h5>
+
+    <div class="card-text">
+
+      <h5>Price:{{prd?.price}} </h5>
+      <h5>Quantity:{{prd?.quantity}} </h5>
+    </div>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-warning" (click)="goPrev()" [disabled]="currPrdID==prdIDList[0]">Prev</button>
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+    <button class="btn btn-danger" (click)="goNext()" [disabled]="currPrdID==prdIDList[prdIDList.length-1]">Next</button>
+
+
+  </div>
+</div>
+<hr>
+<div>
+    <label for="search">Search With Name:</label>
+    <input type="text" class="form-control" id="search" name="search" #prdName>
+    <button class="btn btn-success" (click)="searchFunc(prdName.value)">Search</button>
+</div>

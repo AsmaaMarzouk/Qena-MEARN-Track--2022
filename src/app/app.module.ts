@@ -12,6 +12,9 @@ import { ProductsComponent } from './Components/products/products.component';
 import { BorderBoxDirective } from './Directives/border-box.directive';
 import { UsdToEgpPipe } from './Pipes/usd-to-egp.pipe';
 import { OrderParentComponent } from './Components/order-parent/order-parent.component';
+import { NotFoundPageComponent } from './Components/not-found-page/not-found-page.component';
+import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { OrderParentComponent } from './Components/order-parent/order-parent.com
     ProductsComponent,
     BorderBoxDirective,
     UsdToEgpPipe,
-    OrderParentComponent
+    OrderParentComponent,
+    NotFoundPageComponent,
+    MainLayoutComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

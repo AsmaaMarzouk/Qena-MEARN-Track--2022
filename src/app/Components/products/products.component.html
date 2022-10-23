@@ -24,6 +24,7 @@ For test cat id: <h3>{{selectedCatID}}</h3>
       <!-- <th scope="col">Price</th> -->
       <th scope="col">Price in USD</th>
       <th scope="col">Price in EGP</th>
+      <th scope="col">Details</th>
       <th scope="col">Count</th>
       <th scope="col">cart</th>
     </tr>
@@ -92,7 +93,10 @@ For test cat id: <h3>{{selectedCatID}}</h3>
             <ng-container *ngSwitchDefault>{{prd.quantity}}</ng-container>
           </ng-container>
 
-        </td>
+          <td>
+            <button class="btn btn-info" type="button" (click)="openPrdDetails(prd.id)">Details</button>
+          </td>
+        
         <!-- <td>{{prd.price|currency:'USD':'code'}}</td> -->
         <td>{{prd.price | currency:'USD':'symbol'}}</td>
         <!-- <td>{{prd.price | USDToEgp | currency:'EGP'}}</td> -->
