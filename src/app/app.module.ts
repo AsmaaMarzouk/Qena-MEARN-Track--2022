@@ -15,7 +15,7 @@ import { OrderParentComponent } from './Components/order-parent/order-parent.com
 import { NotFoundPageComponent } from './Components/not-found-page/not-found-page.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,8 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
