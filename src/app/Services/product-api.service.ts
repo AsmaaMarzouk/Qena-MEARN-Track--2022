@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, retry, throwError } from 'rxjs';
 import { Iproduct } from '../Models/iproduct';
 import { environment } from 'src/environments/environment'
 
@@ -9,8 +9,16 @@ import { environment } from 'src/environments/environment'
 })
 // Day5
 export class ProductApiService {
+// Day6
+private httpOptions={};
 
-  constructor(private httpclient:HttpClient) { }
+  constructor(private httpclient:HttpClient) {
+    this.httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+   }
 
   getAllProducts():Observable<Iproduct[]>{
     // return this.httpclient.get<Iproduct[]>(apiURL)
@@ -23,5 +31,23 @@ export class ProductApiService {
 
   getProductByID(prdID:number):Observable<Iproduct>{
     return this.httpclient.get<Iproduct>(`${environment.APIBaseURL}/products/${prdID}`)
+  }
+
+  // Day6
+  addNewProduct(prd:Iproduct):Observable<Iproduct>{
+    return this.httpclient.post<Iproduct>(`${environment.APIBaseURL}/products`,    
+                                           JSON.stringify(prd),
+                                           this.httpOptions);
+                                          //  Advanced point
+                                          //  .pipe(
+                                          //   retry(3),
+                                          //   catchError((err)=>{
+                                          //     return throwError(()=>{
+                                          //       return new Error('Error occured ,please try again')
+                                          //     })
+                                          //   })
+                                          //  )
+
+
   }
 }

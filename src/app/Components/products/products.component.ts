@@ -77,7 +77,7 @@ orderTotalPrice:number = 0;
    // this.prdListOfCat=this.prdservice.getProductsOfCatID(this.receivedCatID);
 
   //  Day5
-  // this.productapiService.getAllProducts().subscribe(prdList=>{this.prdListOfCat=prdList})
+  this.productapiService.getAllProducts().subscribe(prdList=>{this.prdListOfCat=prdList})
 
 
   }
