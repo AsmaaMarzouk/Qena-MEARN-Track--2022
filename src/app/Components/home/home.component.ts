@@ -4,12 +4,12 @@ import { StoreClass } from 'src/app/Models/store-class';
 import { StoreInfo } from 'src/app/Models/store-info';
 import { PromotionAdsService } from 'src/app/Services/promotion-ads.service';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  // template:'<h1>Hello World</h1>',
+  styleUrls: ['./home.component.scss'],
+  // styles:['h1{color:green}']
 })
 export class HomeComponent implements OnInit,OnDestroy {
 // Interface

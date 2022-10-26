@@ -18,6 +18,8 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
 import { HttpClientModule } from '@angular/common/http';
 import { AddProductComponent } from './Components/Admin/add-product/add-product.component';
 import { UserRegisterComponent } from './Components/user-register/user-register.component';
+import { UserLoginComponent } from './Components/user-login/user-login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,14 +35,16 @@ import { UserRegisterComponent } from './Components/user-register/user-register.
     MainLayoutComponent,
     ProductDetailsComponent,
     AddProductComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

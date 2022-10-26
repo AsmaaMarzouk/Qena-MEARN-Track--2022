@@ -115,4 +115,9 @@ orderTotalPrice:number = 0;
 
   }
 
+  trackByFunc(index:number,item:Iproduct){
+    return item.id;
+
+  }
+
 }

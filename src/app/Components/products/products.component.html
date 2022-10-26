@@ -64,7 +64,7 @@ For test cat id: <h3>{{selectedCatID}}</h3>
     <!-- Virtual containers -->
     <!-- ng-conatiner  || ng-template   || ng-content -->
     <!-- <ng-container *ngFor="let prd of prdList;let i=index"> -->
-    <ng-container *ngFor="let prd of prdListOfCat;let i=index">
+    <ng-container *ngFor="let prd of prdListOfCat;let i=index;trackBy:trackByFunc">
       <!-- <tr *ngIf="prd.quantity>0"> -->
       <tr
         [ngStyle]="{'background-color':(prd.quantity==0)?'lightyellow':'lightblue','color':(prd.quantity==0)?'red':'blue'}">
